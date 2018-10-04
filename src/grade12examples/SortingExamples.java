@@ -33,32 +33,58 @@ public class SortingExamples {
             }
         }
     }
-    
-    public void selectionSort(int[] n){
+
+    public void selectionSort(int[] n) {
         //go through the list
-        for (int i = 0; i < n.length - 1; i++) {
-            //minimum position
-            int min = i;
+        for (int i = 0; i < n.length - 1; i++) {             //n-1
+            //minimum position 
+            int min = i;                                     //1
             //go through looking for small
-            for (int j = i + 1; j < n.length; j++) {
-                if(n[min] > n[j]){
-                    min = j;
+            for (int j = i + 1; j < n.length; j++) {         //n
+                if (n[min] > n[j]) {                           //1
+                    min = j;                                 //1
                 }
             }
-            swap (n,i,min);
+            swap(n, i, min);                                  //3
         }
-        
+
     }
-    
-    public void insertionSort(int[] n){
+
+    public void insertionSort(int[] n) {
         for (int i = 0; i < n.length - 1; i++) {
             int j = i + 1;
-            //wjile something is out of position
-            while(j > 0 && n[j] < n[j-1]){
-                swap(n, j, j-1);
+            //while something is out of position
+            while (j > 0 && n[j] < n[j - 1]) {
+                swap(n, j, j - 1);
                 j--;
             }
         }
+    }
+
+    public int linearSearch(int num, int[] n) {
+        for (int i = 0; i < n.length; i++) {
+            if (n[i] == num) {
+                return 1;
+            }
+        }
+        return -1;
+    }
+
+    public int binarySearch(int num, int[] n) {
+        int start = 0;
+        int end = n.length;
+        while(start <= end){
+            int mid = (start + end)/2;
+            if(mid == num){
+                return mid;
+            }else if(n[num] < num){
+                start = mid + 1;
+            }else{
+                end = mid;
+            }
+            
+        }
+        return -1;
     }
 
     /**
@@ -85,6 +111,12 @@ public class SortingExamples {
         for (int i = 0; i < nums.length; i++) {
             System.out.println(nums[i]);
 
+        }
+        int location = test.binarySearch(5, nums);
+        if(location !=-1){
+            System.out.println("Found at" + location);
+        }else{
+            System.out.println("not found");
         }
     }
 }
